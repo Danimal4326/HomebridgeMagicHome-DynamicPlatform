@@ -105,17 +105,15 @@
                               "UniqueId": {
                                 "title": "UniqueId",
                                 "type": "string",
-                                "default": false,
                                 "required": true
                               },
                               "OverrideType": {
                                 "title": "Device Type",
                                 "type": "string",
-                                "default": false,
                                 "required": true
                               }
+                            }
                         },
-                        "default": false,
                         "required": false    
                     },
                     "logLevel": {

@@ -386,6 +386,11 @@ export class HomebridgeMagichomeDynamicPlatform implements DynamicPlatformPlugin
 
     const deviceQueryData:IDeviceQueriedProps = await this.determineController(deviceDiscovered);
 
+    if( this.config.advancedOptions && this.config.advancedOptions.overrideDeviceType ){
+      this.config.advancedOptions.overrideDeviceType.forEach(element => {
+        this.logs.debug("Overriding %o to %o", element.UniqueId, element.OverrideType)
+      });
+
     if(deviceQueryData == null){
       if( unsupportedModels.includes(deviceDiscovered.modelNumber)){
         this.logs.warn('Warning! Discovered device did not respond to query. Device is in the unsupported device list.\nFile an issue on github requesting support. Details:', deviceDiscovered);
