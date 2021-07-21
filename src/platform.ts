@@ -395,7 +395,7 @@ export class HomebridgeMagichomeDynamicPlatform implements DynamicPlatformPlugin
 
     if( this.config.advancedOptions && this.config.advancedOptions.overrideDeviceType ){
       this.config.advancedOptions.overrideDeviceType.forEach(element => {
-        this.logs.debug("Overriding %o to %o", element.UniqueId, element.OverrideType)
+        this.logs.debug("Overriding %o to %o", element.UniqueId, element.OverrideType);
       });
 
     if(deviceQueryData == null){
