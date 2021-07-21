@@ -35,7 +35,7 @@
       },
       "advancedOptions": {
         "namesWithMacAddress": true,
-        "overrideDeviceType": ["": ""]
+        "overrideDeviceType": [""]
       }
     }
   ]
