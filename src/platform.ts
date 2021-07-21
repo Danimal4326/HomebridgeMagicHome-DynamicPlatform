@@ -320,7 +320,21 @@ export class HomebridgeMagichomeDynamicPlatform implements DynamicPlatformPlugin
     return isAllowed;
   }
 
-  async getInitialState(ipAddress, _timeout = 500) {
+  getOverrideHardwareVersion(uniqueId, detectedHardwareVersion){
+
+    let overrideVerison = detectedHardwareVersion;
+    if (this.config.advancedOptions.overrideDeviceType) {
+      const overrideList = this.config.advancedOptions.overrideDeviceType;
+      overrideList.array.forEach(element => {
+        if (element.UniqueId == uniqueId) {
+          overrideVerison = element.overrideType;
+        }
+      });
+    }
+    return overrideVerison;
+  }
+
+  async getInitialState(ipAddress, _timeout = 500){
 
     const transport = new Transport(ipAddress, this.config);
     try {
@@ -352,9 +366,10 @@ export class HomebridgeMagichomeDynamicPlatform implements DynamicPlatformPlugin
     }
 
     let lightParameters: ILightParameters;
-    const controllerHardwareVersion = initialState.controllerHardwareVersion;
+    //let controllerHardwareVersion = initialState.controllerHardwareVersion;
     const controllerFirmwareVersion = initialState.controllerFirmwareVersion;
-
+    const controllerHardwareVersion = this.getOverrideHardwareVersion(discoveredDevice.uniqueId, initialState.controllerHardwareVersion);
+    
     this.logs.debug('Attempting to assign controller to new device: UniqueId: %o \nIpAddress %o \nModel: %o\nHardware Version: %o \nDevice Type: %o\n',
       discoveredDevice.uniqueId, discoveredDevice.ipAddress, discoveredDevice.modelNumber, initialState.controllerHardwareVersion.toString(16), initialState.controllerFirmwareVersion.toString(16));
 
@@ -397,6 +412,7 @@ export class HomebridgeMagichomeDynamicPlatform implements DynamicPlatformPlugin
       this.config.advancedOptions.overrideDeviceType.forEach(element => {
         this.logs.debug("Overriding %o to %o", element.UniqueId, element.OverrideType);
       });
+    }
 
     if(deviceQueryData == null){
       if( unsupportedModels.includes(deviceDiscovered.modelNumber)){
