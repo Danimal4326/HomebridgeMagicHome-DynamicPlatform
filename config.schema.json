@@ -108,6 +108,30 @@
                         "default": false,
                         "required": true
                     },
+                    "overrideDeviceType": {
+                        "title": "Override device type",
+                        "description": "Override detected device type with specified type.  ",
+                        "type": "array",
+                        "items": {
+                            "title": "Type Overrides",
+                            "type": "object",
+                            "properties": {
+                              "UniqueId": {
+                                "title": "UniqueId",
+                                "type": "string",
+                                "default": false,
+                                "required": true
+                              },
+                              "OverrideType": {
+                                "title": "Device Type",
+                                "type": "string",
+                                "default": false,
+                                "required": true
+                              }
+                        },
+                        "default": false,
+                        "required": false    
+                    },
                     "logLevel": {
                         "title": "Log Level:",
                         "type": "integer",
