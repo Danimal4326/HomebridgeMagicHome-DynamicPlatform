@@ -316,11 +316,15 @@ export class HomebridgeMagichomeDynamicPlatform implements DynamicPlatformPlugin
   getOverrideHardwareVersion(uniqueId, detectedHardwareVersion){
 
     let overrideVerison = detectedHardwareVersion;
+    
     if (this.config.advancedOptions.overrideDeviceType) {
       const overrideList = this.config.advancedOptions.overrideDeviceType;
-      overrideList.array.forEach(element => {
+
+
+      this.config.advancedOptions.overrideDeviceType.forEach(element => {
         if (element.UniqueId == uniqueId) {
-          overrideVerison = element.overrideType;
+          overrideVerison = Number(element.OverrideType);
+          this.logs.debug("Overriding %o to %o", detectedHardwareVersion, overrideVerison);
         }
       });
     }
@@ -361,8 +365,12 @@ export class HomebridgeMagichomeDynamicPlatform implements DynamicPlatformPlugin
     let lightParameters: ILightParameters;
     //let controllerHardwareVersion = initialState.controllerHardwareVersion;
     const controllerFirmwareVersion = initialState.controllerFirmwareVersion;
+    
+    this.logs.debug(typeof initialState.controllerHardwareVersion);
     const controllerHardwareVersion = this.getOverrideHardwareVersion(discoveredDevice.uniqueId, initialState.controllerHardwareVersion);
     
+    this.logs.debug(typeof controllerHardwareVersion);
+
     this.logs.debug('Attempting to assign controller to new device: UniqueId: %o \nIpAddress %o \nModel: %o\nHardware Version: %o \nDevice Type: %o\n',
       discoveredDevice.uniqueId, discoveredDevice.ipAddress,discoveredDevice.modelNumber, initialState.controllerHardwareVersion.toString(16), initialState.controllerFirmwareVersion.toString(16));
  
@@ -400,12 +408,6 @@ export class HomebridgeMagichomeDynamicPlatform implements DynamicPlatformPlugin
     const unsupportedModels: string[] = [ '000-0000']; //AK001-ZJ210 is suported... 
 
     const deviceQueryData:IDeviceQueriedProps = await this.determineController(deviceDiscovered);
-
-    if( this.config.advancedOptions && this.config.advancedOptions.overrideDeviceType ){
-      this.config.advancedOptions.overrideDeviceType.forEach(element => {
-        this.logs.debug("Overriding %o to %o", element.UniqueId, element.OverrideType);
-      });
-    }
 
     if(deviceQueryData == null){
       if( unsupportedModels.includes(deviceDiscovered.modelNumber)){
