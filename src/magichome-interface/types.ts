@@ -27,6 +27,7 @@ export enum ControllerTypes {
     CCTStrip = 'CCTStrip',
     DimmerStrip = 'DimmerStrip',
     GRBStrip = 'GRBStrip',
+    GRBStripSingleColor = 'GRBStripSingleColor',
     RGBWWBulb = 'RGBWWBulb',
     RGBWBulb = 'RGBWBulb',
     Switch = 'Switch',

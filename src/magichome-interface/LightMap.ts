@@ -177,6 +177,17 @@ const lightTypesMap: Map<number, ILightParameters> = new Map([
       hasBrightness: true,
     },
   ],
+  [
+    0xf3,
+    {
+      controllerLogicType: ControllerTypes.GRBStripSingleColor,
+      convenientName: 'GRB Strip - Single Color Mode',
+      simultaneousCCT: false,
+      hasColor: false,
+      hasCCT: false,
+      hasBrightness: true,
+    },
+  ],
 ]);
 
 function getPrettyName(uniqueId:string, controllerLogicType:string | null):string{
