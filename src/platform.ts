@@ -7,6 +7,7 @@ import { Switch } from './accessories/Switch';
 import { DimmerStrip } from './accessories/DimmerStrip';
 import { RGBStrip } from './accessories/RGBStrip';
 import { GRBStrip } from './accessories/GRBStrip';
+import { GRBStripSingleColor } from './accessories/GRBStripSingleColor';
 import { RGBWBulb } from './accessories/RGBWBulb';
 import { RGBWWBulb } from './accessories/RGBWWBulb';
 import { RGBWStrip } from './accessories/RGBWStrip';
@@ -27,6 +28,7 @@ const accessoryType = {
   Switch,
   DimmerStrip,
   GRBStrip,
+  GRBStripSingleColor,
   RGBStrip,
   RGBWBulb,
   RGBWWBulb,
