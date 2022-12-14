@@ -336,10 +336,11 @@ export class HomebridgeMagichomeDynamicPlatformAccessory {
    * send state to homekit
    */
   async updateHomekitState() {
-
     this.service.updateCharacteristic(this.platform.Characteristic.On,  this.lightState.isOn);
-    this.service.updateCharacteristic(this.platform.Characteristic.Hue, this.lightState.HSL.hue);
-    this.service.updateCharacteristic(this.platform.Characteristic.Saturation, this.lightState.HSL.saturation);
+    if (this.myDevice.lightParameters.hasColor) {
+      this.service.updateCharacteristic(this.platform.Characteristic.Hue, this.lightState.HSL.hue);
+      this.service.updateCharacteristic(this.platform.Characteristic.Saturation, this.lightState.HSL.saturation);
+    }
     if(this.lightState.HSL.luminance > 0 && this.lightState.isOn){
       this.updateLocalBrightness(this.lightState.HSL.luminance * 2);
     }
