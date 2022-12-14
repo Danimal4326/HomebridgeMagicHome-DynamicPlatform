@@ -108,6 +108,17 @@
                         "default": false,
                         "required": true
                     },
+                    "singleColorMode": {
+                        "title": "Force single color mode (dimmer only)",
+                        "description": "Force the device to report it has no color controls.  ",
+                        "type": "array",
+                        "items": {
+                            "title": "Unique ID",
+                            "type": "string",
+                            "default": []
+                        },
+                        "required": false    
+                    },
                     "logLevel": {
                         "title": "Log Level:",
                         "type": "integer",

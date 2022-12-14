@@ -366,6 +366,9 @@ export class HomebridgeMagichomeDynamicPlatform implements DynamicPlatformPlugin
         controllerHardwareVersion.toString(16),
         controllerFirmwareVersion.toString(16));
       lightParameters = lightTypesMap.get(controllerHardwareVersion);
+      if (this.config.advancedOptions.singleColorMode.has(discoveredDevice.uniqueId) ) {
+        lightParameters.hasColor = false;
+      }
     } else {
       this.logs.warn('Unknown device version number: %o... unable to create accessory.', controllerHardwareVersion.toString(16));
       this.logs.warn('Please create an issue at https://github.com/Zacknetic/HomebridgeMagicHome-DynamicPlatform/issues and upload your homebridge.log');
