@@ -366,7 +366,7 @@ export class HomebridgeMagichomeDynamicPlatform implements DynamicPlatformPlugin
         controllerHardwareVersion.toString(16),
         controllerFirmwareVersion.toString(16));
       lightParameters = lightTypesMap.get(controllerHardwareVersion);
-      if (this.config.advancedOptions.singleColorMode.has(discoveredDevice.uniqueId) ) {
+      if (this.config.advancedOptions.singleColorMode.includes(discoveredDevice.uniqueId) ) {
         lightParameters.hasColor = false;
       }
     } else {
